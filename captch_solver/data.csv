@@ -1,0 +1,6 @@
+,image_name,word_bboxes,pred_words,align_text
+0,filename.png,"{'0.9948215': array([[ 9.744568 , 20.192896 ],
+       [94.48225  , 26.971909 ],
+       [92.12507  , 56.436672 ],
+       [ 7.3873887, 49.657658 ]], dtype=float32)}",Unknown,Unknown
+1,filename.png,Unknown,Unknown,Unknown
