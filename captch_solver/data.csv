@@ -1,13 +1,6 @@
 ,image_name,word_bboxes,pred_words,align_text
-<<<<<<< Updated upstream
-0,filename.png,"{'0.9790073': array([[ 56.635387 ,   4.7894096],
-       [221.22021  ,   9.879664 ],
-       [219.52136  ,  64.809944 ],
-       [ 54.936512 ,  59.719685 ]], dtype=float32)}",Unknown,Unknown
-=======
-0,filename.png,"{'0.9615521': array([[ 53.333332 ,   1.3333334],
-       [173.33333  ,   1.3333334],
-       [173.33333  ,  44.       ],
-       [ 53.333332 ,  44.       ]], dtype=float32)}",Unknown,Unknown
->>>>>>> Stashed changes
+0,filename.png,"{'0.9931561': array([[  6.7146707,  19.738491 ],
+       [108.32671  ,  21.40426  ],
+       [107.855995 ,  50.11786  ],
+       [  6.2439575,  48.452087 ]], dtype=float32)}",Unknown,Unknown
 1,filename.png,Unknown,Unknown,Unknown
