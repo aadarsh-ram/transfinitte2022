@@ -89,8 +89,6 @@ def get_tamilnadupdf(dist,asc,part,browser):
     par.click()
     bypass_captcha(browser)
 
-    print('hey')
-
     src = browser.page_source
 
     with open('gg.html','wb') as file:

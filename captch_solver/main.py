@@ -1,6 +1,7 @@
 import time
 import glob
 import os
+from nctdelhi import get_nctdelhipdf
 from westbengal import get_westbengalpdf
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
@@ -203,8 +204,6 @@ def getRequestEPIC(link, epic, state, district):
 
     browser.switch_to.window(tbs[-1])
 
-    print('here')
-
     html_src = browser.page_source
 
     soup = BeautifulSoup(html_src, 'html.parser')
@@ -237,15 +236,21 @@ def getRequestEPIC(link, epic, state, district):
     return(part_no,serial_no,epic_id,asc_no,asc,state,district)
 
 # part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
-part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestEPIC("https://electoralsearch.in/", "RAZ2234219", "Tamil Nadu", "Chennai")
+part_no,serial_no,epic_id,asc_no,asc,state,district = getRequestEPIC("https://electoralsearch.in/", "RAZ2234219", "Tamil Nadu", "Chennai")
 
 if(state=="Tamil Nadu"):
-    print(get_tamilnadupdf(district,asc,int(part_no),browser))
+    print(get_tamilnadupdf(district, asc, int(part_no), browser))
 
 elif(state=="Uttar Pradesh"):
-    print(get_uttar_pradesh(district,asc,part_no,browser))
+    print(get_uttar_pradesh(district, asc, part_no, browser))
 
-# Not working
+elif(state=="NCT OF Delhi"):
+    print(get_nctdelhipdf(asc, part_no, browser))
+
+# Not working cause captcha tough
 # get_westbengalpdf("Coochbehar", "Cooch Behar Dakshin", 1, browser) 
+
+# Working
+# print(get_nctdelhipdf("Sadar Bazar", 1, browser))
 
 browser.quit()
