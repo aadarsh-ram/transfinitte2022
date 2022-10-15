@@ -8,25 +8,37 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from solver import solver_agent
+from bs4 import BeautifulSoup
+from tamilnadu import get_tamilnadupdf
 
 
 path = 'test_img'
 cropped_img_path = 'cropped_img'
 solver = solver_agent()
+path_loc = os.path.join(os.getcwd(),'test_pdf')
+
+
+chrome_options = Options()
+# chrome_options.add_argument("--headless") # Disable GUI
+
+user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+chrome_options.add_argument(f'user-agent={user_agent}')
+
+chrome_options.add_argument("--no-sandbox")
+
+chrome_options.add_experimental_option('prefs', {
+"download.default_directory":path_loc,
+"profile.default_content_settings.popups":0,
+"download.prompt_for_download": False, #To auto download the file
+"download.open_pdf_in_system_reader":False,
+"plugins.always_open_pdf_externally": True #It will not show PDF directly in chrome
+})
+
+# Comment if driver already added to PATH
+webdriver_service = Service("/home/shubham/Downloads/chromedriver")
+browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 
 def getRequestID(link, name, age, father_name, gender, state, district, ass_cons):
-
-    chrome_options = Options()
-    # chrome_options.add_argument("--headless") # Disable GUI
-
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
-    chrome_options.add_argument(f'user-agent={user_agent}')
-
-    chrome_options.add_argument("--no-sandbox")
-
-    # Comment if driver already added to PATH
-    webdriver_service = Service("/home/frozenwolf/chromedriver")
-    browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 
     browser.get(link)
     # print(browser.page_source.encode('utf-8'))
@@ -88,6 +100,52 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
     viewdetails_but = browser.find_element(By.XPATH,'//*[@id="resultsTable"]/tbody/tr/td[1]/form/input[25]')
     viewdetails_but.click()
 
-    time.sleep(50000)
+    time.sleep(15)
 
-getRequestID("https://electoralsearch.in/", "Aashish A", 22, "Anantha Ramakrishnan R", 'M', 'Tamil Nadu', 'Chennai', 'Virugampakkam')
+    tbs = browser.window_handles
+
+    for i in tbs:
+        if(i!=browser.current_window_handle):
+            browser.switch_to.window(i)
+            break
+
+    print('here')
+
+    html_src = browser.page_source
+
+    soup = BeautifulSoup(html_src, 'html.parser')
+
+    asc_inp_tag = soup.find("input", { "id" : "ac_name" })
+    asc = asc_inp_tag['value']
+
+    part_no_tag = soup.find("input",{"id":"part_no"})
+    part_no = part_no_tag['value']
+
+    serial_no_tag = soup.find("input",{"id":"slno_inpart"})
+    serial_no = serial_no_tag['value']
+
+    epic_inp_tag = soup.find("input",{"id":"epic_no"})
+    epic_tag = epic_inp_tag.find_next_sibling()
+    print(epic_tag.text)
+    epic_id = epic_tag.text
+
+    asc_tag2 = asc_inp_tag.find_next_sibling()
+
+    asc_no = ""
+
+    for i in range(len(asc_tag2.text)-1,0,-1):
+        if(asc_tag2.text[i]=='-' or asc_tag2.text[i]==' '):
+            break
+        else:
+            asc_no+=asc_tag2.text[i]
+    
+    asc_no = asc_no[::-1]
+    return(part_no,serial_no,epic_id,asc_no,asc,district)
+
+part_no,serial_no,epic_id,asc_no,asc,district = getRequestID("https://electoralsearch.in/", "Aashish A", 22, "Anantha Ramakrishnan R", 'M', 'Tamil Nadu', 'Chennai', 'Virugampakkam')
+
+pdf_path = get_tamilnadupdf(district,asc,int(part_no),browser)
+
+print(pdf_path)
+
+browser.quit()
