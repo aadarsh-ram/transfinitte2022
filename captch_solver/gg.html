@@ -1,46 +1,327 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>:: CEO Uttar Pradesh ::</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/backbox.css" type="text/css">
 
-</title>
+    <script type="text/javascript" src="JS/prototype.compressed.js"></script>
 
-  <script type="text/javascript">
-      window.oncontextmenu = function () {
-          return false;
-      }
-      $(document).keydown(function (event) {
-          if (event.keyCode == 123) {
-              return false;
-          }
-          else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
-              return false;
-          }
-      });
+    <script type="text/javascript" src="JS/lightbox.js"></script>
 
-      $(document).ready(function () {
-          //Disable cut copy paste
-          $('body').bind('cut copy paste', function (e) {
-              e.preventDefault();
-          });
+    <script type="text/javascript" src="JS/dhtmlHistory.js"></script>
 
-          //Disable mouse right click
-          $("body").on("contextmenu", function (e) {
-              return false;
-          });
-      });
+    <script type="text/javascript" src="JS/customsignsheader.js"></script>
+
+    
+    <meta name="Description" content="">
+    <meta name="Keywords" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <meta name="viewport" content="width=1024">
+    <!-- without htc -->
+    <!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/.element/css/3.0/common.ie6.css"><!-- with htc -->
+    <!--[endif]---->
+    <link rel="stylesheet" type="text/css" href="css/main.css?20110513">
+    <link rel="stylesheet" type="text/css" href="css/overlay.css">
+    <link rel="stylesheet" type="text/css" href="css/tw.css">
+    <link rel="stylesheet" type="text/css" href="css/personalization.css">
+
+    <script src="JS/omni.time.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="JS/protoaculous.1.8.2.min.js"></script>
+
+    <script type="text/javascript" src="JS/main.js"></script>
+
+    <script type="text/javascript" src="JS/csiManager.js"></script>
+
+    <script type="text/javascript" src="JS/StorageManager.js"></script>
+
+    <script type="text/javascript" src="JS/local.js"></script>
+
+    <script src="JS/cvp_suppl.js" type="text/javascript"></script>
+
+    <script src="JS/cvp.js" type="text/javascript"></script>
+
+    <script src="JS/fwjslib_1.1.js?version=1.1" type="text/javascript"></script>
+
+    <script type="text/javascript" src="JS/ad_head0.js"></script>
+
+    <!-- Login Script-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="subModal.css">
+
+    <script type="text/javascript" src="common.js"></script>
+
+    <script type="text/javascript" src="subModal.js"></script>
+
+    <!-- End Login Script-->
+
+  <script language="javascript" type="text/javascript" src="CommonScript.js">
+</script>
+    
+    <link href="calender/theme.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/ConfigForm.js">
+   
     </script>
+
+    <script src="CommonScript.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="calender/popcalendar.js">
+    </script>
+      <script type="text/javascript" src="js/date.js">
+    </script>
+    <script type="text/javascript" src="enc.js">
+    </script>
+        <script type="text/javascript" language="javascript">
+function change()
+{
+return confirm('Are you sure you want to change the round');
+
+}
+</script>
+<script type="text/javascript">
+function checkDate(source,format)
+{
+var fieldValue=source.value;
+if(fieldValue.length>0)
+{
+var retDateVal = isDate(fieldValue,"d/MM/y");
+    if(retDateVal == false)
+    {
+        alert("Please enter date in correct format (dd/MM/yyyy).");
+        fieldValue="";
+        source.focus();
+        return false;
+    }
+}
+
+}
+</script>
+
+    <script type="text/javascript">        //disable back button
+        window.history.go(1)
+        window.history.forward(1)
+</script>
+   <script type="text/javascript">
+
+       function loginsubmit(lbl1, txtold, txtnew, txtcnf) {
+
+           if (Page_ClientValidate() == true) {
+               var rand = document.getElementById(lbl1).innerHTML;
+
+               var txtstr = document.getElementById(txtold).value;
+               var txtsum = hex_md5(txtstr) + rand;
+               document.getElementById(txtold).value = hex_md5(Math.random().toString());
+               document.getElementById("Hidden1").value = hex_md5(txtsum);
+               //            document.getElementById(txtnew).value=hex_md5(Math.random().toString());
+               //            document.getElementById(txtcnf).value=hex_md5(Math.random().toString());
+               return true;
+           }
+           return false;
+
+       }
+</script>
+
+<script language="javascript" type="text/javascript">
+        function funcOnClose()
+        {
+                if ( window.event.clientX > 100 && window.event.clientY < 0)
+                {
+                    window.location.href('Error_Page.aspx');
+                }
+        }
+        </script>
 </head>
 <body>
-    <form method="post" action="./PdfDownload.aspx" id="form1" autocomplete="off">
-<div class="aspNetHidden">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="0mvXl+Zai7ryZmebmqPwK0gNJKrX6alPZn3ESc4uH16YVEZ7AdqjpK17Uim0SfaqVgJr6Zpo+ImCGgi9BV/7bW9EBesBZrhMM+Y9+IbEfH6rs6mgp7rOw2xLxlVVEOqfFTwCEG2cimy3YKK67D5uRzMaqxlcvFI+WhiwgxByZ73AEEVBUQ/CnItKIF6ojfOgp/vUQPupVEI/u5LYt08ceLA/DHf1XjyelzLK1GBu67DmoG/fh/M/ZSK6hJF+KwOL">
+    <form name="aspnetForm" method="post" action="./PopupCaptcha.aspx?link=GG6dkDK5iso1In17chaMVIaNrSYLBsLHIxMxU5KcYIY%3d" id="aspnetForm">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJOTM0OTIxMjkzZGTzQQ9gGiUpGgjCIF0272KYc7c69WqkF7HvUAfQ+FrnqA==">
 </div>
 
-<div class="aspNetHidden">
+<div>
 
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="258783DC">
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="13757EDF">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAM9+SeG/U6DfIaZ20XhsG32VVtLYsxovJQkuU8bX9t8WIw7t+aOQlJ+rpluCTaRNacZYibBiFYYaXhkEDAVb5FpYA6R8YqQGhe6xt944EapEA==">
 </div>
-    <div id="frmae">
-    <iframe src="https://www.elections.tn.gov.in/SSR2022_MR_05012022/dt2/ac022/ac022120.pdf" id="frame_134" height="770px" width="1580px" allowtransparency="false" style="overflow:scroll"></iframe>
-        
+  <!-- '' 'raw' 'true' -->
+    <div id="cnn_ipadappbanner">
+    </div>
+    <div id="cnn_hdr">
+        <div id="cnn_hdr-prompt" style="display: none;">
+            <div class="hdr-wrap" id="cnn_hdr-promptcntnt">
+            </div>
+        </div>
+        <div id="cnn_hdr-main">
+            <div class="hdr-wrap">
+                <div id="hdr-banner">
+                </div>
+                <div id="hdr-editions">
+                </div>
+                <div class="MainHeadingText" align="left">
+                    <table width="100%" align="left">
+                        <tbody><tr>
+                            <td>
+                                <br>
+                                <img src="images/logo1.jpeg" alt="" height="80" width="90">
+                                <br>
+                            </td>
+                            <td>
+                                <br>
+                                <br>
+                                Chief Electoral Officer,
+                                <br>
+                                <br>
+                                <br>
+                                Uttar Pradesh.
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div id="hdr-search">
+                    <img src="img/9.jpg" width="150px" height="80px">
+                    <p style="font-size: 11px; font-weight: bold; color: #FFFFFF; margin-top: 2px; margin-bottom: 4px;">
+                     Strong Democracy Everyone's Participationp
+                </p></div>
+            </div>
+        </div>
+        <div>
+          
+        </div>
+    </div>
+    <div class="cnn_adcntrt728x90" style="padding: 0px 0px 5px 0px;" align="center">
+        <div class="cnn_adspc728x90">
+            <div>
+                <div id="ad-391129" align="center" style="padding: 0; margin: 0; border: 0;">&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tracking values -->
+    <div align="center">
+        <div id="cnn_maincntnr">
+            <div id="cnnSetEditionContainer">
+                <div class="Linkdiv" align="right">
+                   &nbsp;
+                </div>
+            </div>
+            <div class="cnn_pad2top cnn_shdspc">
+                
+    
+    
+        <style>
+            .button
+            {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 10px 10px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            .size
+            {
+                font-size: medium;
+            }
+        </style>
+    
+    
+        <hr align="left" width="50%">
+        <div>
+            <table>
+                <tbody><tr>
+                    <th style="color: #00a3cc;" class="size">
+                        ~~~Elector Roll Pdf-2022~~~
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="50">
+                    </td>
+                </tr>
+            </tbody></table>
+        </div>
+        <hr align="left" width="50%">
+        <div>
+            <table border="1">
+                <tbody><tr>
+                    <td>
+                        <h1 style="color: blue;" align="center" class="size">
+                            CAPTCHA IMAGE!</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="center">
+                            <img id="ctl00_ContentPlaceHolder1_Image1" src="CImage.aspx" style="border-width:0px;">
+                            
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6 style="color: blue;" class="size">
+                            Please Enter the captcha below!</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="center">
+                            <input name="ctl00$ContentPlaceHolder1$txtimgcode" type="text" id="ctl00_ContentPlaceHolder1_txtimgcode" style="height:20px;width:188px;"></div>
+                        <span id="ctl00_ContentPlaceHolder1_lblMessage"></span>
+                    </td>
+                    </tr><tr>
+                        <td>
+                            <div align="center">
+                                <input type="submit" name="ctl00$ContentPlaceHolder1$Button1" value="View/Download" id="ctl00_ContentPlaceHolder1_Button1" class="button"></div>
+                        </td>
+                    </tr>
+                
+            </tbody></table>
+        </div>
+    
+    
+</div>
+
+           
+            <div id="cnn_ftrcntnt">
+                <div id="cnn_ftrcntntinner" class="clearfix">
+                    
+                 
+                    
+                    <div class="cnn_ftrdivl2">
+                    </div>
+                    <div class="cnn_ftrlgcpy">
+                        <center style="margin-top: 10px">
+                            <b>Disclaimer:</b> Content on this website is owned by Chief Electoral Office, U.P.
+                            
+                            <br>
+                            Website designed and hosted by <a target="_blank" href="http://up.nic.in/">National Informatics Centre,U.P
+                                State Unit ,Lucknow. </a>
+                        </center>
+                    </div>
+                    <div class="cnn_ftrlgcpyBot">
+                    </div>
+                    <div class="cnn_ftrlnggcntrBot">
+                    </div>
+                    <div class="cnn_clear">
+                    </div>
+                </div>
+                <!-- /cnn_ftrcntntinner -->
+            </div>
+
+            <script type="text/javascript" src="JS/jsmd.js"></script>
+
+            <script src="JS/hpsectiontracking.js" type="text/javascript"></script>
+
+            <div align="center" style="padding: 0; margin: 0; border: 0;">
+            </div>
+            <img src="images/1.gif" alt="" id="TargetImageDE" name="TargetImageDE" width="1" height="1">
+            <img src="images/1.gif" alt="" width="0" height="0" border="0" vspace="0" hspace="0" name="cookieCrumb" id="cookieCrumb" align="right">
+        </div>
     </div>
     </form>
 

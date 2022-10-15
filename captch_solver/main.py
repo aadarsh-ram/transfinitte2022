@@ -1,3 +1,4 @@
+import imp
 import time
 import glob
 import os
@@ -10,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from solver import solver_agent
 from bs4 import BeautifulSoup
 from tamilnadu import get_tamilnadupdf
+from uttarpradesh import get_uttar_pradesh
 
 
 path = 'test_img'
@@ -83,6 +85,10 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
         prediction = solver.solve(path)
 
         captchaText = browser.find_element(By.XPATH, '//*[@id="txtCaptcha"]')
+
+        if(prediction==None):
+            prediction="dg"
+
         captchaText.send_keys(prediction)
 
         submitbt = browser.find_elements(By.XPATH,'//*[@id="btnDetailsSubmit"]')[1]
@@ -104,10 +110,7 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
 
     tbs = browser.window_handles
 
-    for i in tbs:
-        if(i!=browser.current_window_handle):
-            browser.switch_to.window(i)
-            break
+    browser.switch_to.window(tbs[-1])
 
     print('here')
 
@@ -140,12 +143,16 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
             asc_no+=asc_tag2.text[i]
     
     asc_no = asc_no[::-1]
-    return(part_no,serial_no,epic_id,asc_no,asc,district)
+    return(part_no,serial_no,epic_id,asc_no,asc,district,state)
 
-part_no,serial_no,epic_id,asc_no,asc,district = getRequestID("https://electoralsearch.in/", "Aashish A", 22, "Anantha Ramakrishnan R", 'M', 'Tamil Nadu', 'Chennai', 'Virugampakkam')
+part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
 
-pdf_path = get_tamilnadupdf(district,asc,int(part_no),browser)
 
-print(pdf_path)
+
+if(state=="Tamil Nadu"):
+    print(get_tamilnadupdf(district,asc,int(part_no),browser))
+
+elif(state=="Uttar Pradesh"):
+    print(get_uttar_pradesh(district,asc,part_no,browser))
 
 browser.quit()
