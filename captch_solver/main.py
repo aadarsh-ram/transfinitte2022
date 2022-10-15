@@ -1,4 +1,3 @@
-import imp
 import time
 import glob
 import os
@@ -146,7 +145,99 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
     asc_no = asc_no[::-1]
     return(part_no,serial_no,epic_id,asc_no,asc,district,state)
 
-part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
+def getRequestEPIC(link, epic, state, district):
+    
+    browser.get(link)
+    # print(browser.page_source.encode('utf-8'))
+    continue_but = browser.find_element(By.XPATH,'//*[@id="continue"]')
+    continue_but.click()
+
+    get_epic_btn = browser.find_element(By.XPATH, '//*[@id="mainContent"]/div[2]/div/div/ul/li[2]')
+    get_epic_btn.click()
+
+    text_epic = browser.find_element(By.XPATH, '//*[@id="name"]')
+    text_epic.send_keys(epic)
+
+    state_select = Select(browser.find_element(By.XPATH,'//*[@id="epicStateList"]'))
+    state_select.select_by_visible_text(state)
+
+    
+    while True:
+        files = glob.glob(path+'/*')
+        for f in files:
+            os.remove(f)
+        files = glob.glob(cropped_img_path+'/*')
+        for f in files:
+            os.remove(f)
+        
+        captcha = browser.find_element(By.XPATH,'//*[@id="captchaEpicImg"]');
+        with open(path+'/filename.png','wb') as file:
+            file.write(captcha.screenshot_as_png);
+        prediction = solver.solve(path)
+
+        captchaText = browser.find_element(By.XPATH, '//*[@id="txtEpicCaptcha"]')
+
+        if(prediction==None):
+            prediction="dg"
+
+        captchaText.send_keys(prediction)
+
+        submitbt = browser.find_element(By.XPATH,'//*[@id="btnEpicSubmit"]')
+        submitbt.click()
+
+        try:
+            time.sleep(1)
+            viewdetails_but = browser.find_element(By.XPATH,'//*[@id="resultsTable"]/tbody/tr/td[1]/form/input[25]')
+            break
+        except:
+            continue
+    
+        time.sleep(3)
+
+    viewdetails_but = browser.find_element(By.XPATH,'//*[@id="resultsTable"]/tbody/tr/td[1]/form/input[25]')
+    viewdetails_but.click()
+
+    time.sleep(15)
+
+    tbs = browser.window_handles
+
+    browser.switch_to.window(tbs[-1])
+
+    print('here')
+
+    html_src = browser.page_source
+
+    soup = BeautifulSoup(html_src, 'html.parser')
+
+    asc_inp_tag = soup.find("input", { "id" : "ac_name" })
+    asc = asc_inp_tag['value']
+
+    part_no_tag = soup.find("input",{"id":"part_no"})
+    part_no = part_no_tag['value']
+
+    serial_no_tag = soup.find("input",{"id":"slno_inpart"})
+    serial_no = serial_no_tag['value']
+
+    epic_inp_tag = soup.find("input",{"id":"epic_no"})
+    epic_tag = epic_inp_tag.find_next_sibling()
+    epic_id = epic_tag.text
+
+    asc_tag2 = asc_inp_tag.find_next_sibling()
+
+    asc_no = ""
+
+    for i in range(len(asc_tag2.text)-1,0,-1):
+        if(asc_tag2.text[i]=='-' or asc_tag2.text[i]==' '):
+            break
+        else:
+            asc_no+=asc_tag2.text[i]
+    
+    asc_no = asc_no[::-1]
+    print (asc_no, part_no, serial_no)
+    return(part_no,serial_no,epic_id,asc_no,asc,state,district)
+
+# part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
+part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestEPIC("https://electoralsearch.in/", "RAZ2234219", "Tamil Nadu", "Chennai")
 
 if(state=="Tamil Nadu"):
     print(get_tamilnadupdf(district,asc,int(part_no),browser))
