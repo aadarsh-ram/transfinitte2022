@@ -2,6 +2,7 @@ import imp
 import time
 import glob
 import os
+from westbengal import get_westbengalpdf
 from selenium.webdriver.support.ui import Select
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -37,7 +38,7 @@ chrome_options.add_experimental_option('prefs', {
 })
 
 # Comment if driver already added to PATH
-webdriver_service = Service("/home/shubham/Downloads/chromedriver")
+webdriver_service = Service("/mnt/c/Users/aadar/chromedriver/stable/chromedriver")
 browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 
 def getRequestID(link, name, age, father_name, gender, state, district, ass_cons):
@@ -147,12 +148,13 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
 
 part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
 
-
-
 if(state=="Tamil Nadu"):
     print(get_tamilnadupdf(district,asc,int(part_no),browser))
 
 elif(state=="Uttar Pradesh"):
     print(get_uttar_pradesh(district,asc,part_no,browser))
+
+# Not working
+# get_westbengalpdf("Coochbehar", "Cooch Behar Dakshin", 1, browser) 
 
 browser.quit()
