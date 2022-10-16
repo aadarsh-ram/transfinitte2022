@@ -1,25 +1,20 @@
 import time
 import glob
 import os
-from nctdelhi import get_nctdelhipdf
-from westbengal import get_westbengalpdf
-from selenium.webdriver.support.ui import Select
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
+
 from solver import solver_agent
 from bs4 import BeautifulSoup
-from tamilnadu import get_tamilnadupdf
-from uttarpradesh import get_uttar_pradesh
 
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 path = 'test_img'
 cropped_img_path = 'cropped_img'
 solver = solver_agent()
 path_loc = os.path.join(os.getcwd(),'test_pdf')
-
 
 chrome_options = Options()
 # chrome_options.add_argument("--headless") # Disable GUI
@@ -30,18 +25,23 @@ chrome_options.add_argument(f'user-agent={user_agent}')
 chrome_options.add_argument("--no-sandbox")
 
 chrome_options.add_experimental_option('prefs', {
-"download.default_directory":path_loc,
+"download.default_directory": path_loc,
 "profile.default_content_settings.popups":0,
 "download.prompt_for_download": False, #To auto download the file
 "download.open_pdf_in_system_reader":False,
 "plugins.always_open_pdf_externally": True #It will not show PDF directly in chrome
 })
 
-# Comment if driver already added to PATH
-webdriver_service = Service("/mnt/c/Users/aadar/chromedriver/stable/chromedriver")
-browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+def startupDB():
+    global browser
+    # Comment if driver already added to PATH
+    webdriver_service = Service("/mnt/c/Users/aadar/chromedriver/stable/chromedriver")
+    browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 
-def getRequestID(link, name, age, father_name, gender, state, district, ass_cons):
+def shutdownDB():
+    browser.close()
+
+def getRequestID(link, name, age, father_name, gender, state, district):
 
     browser.get(link)
     # print(browser.page_source.encode('utf-8'))
@@ -67,10 +67,6 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
     time.sleep(2)
     district_select = Select(last_selects[0]);
     district_select.select_by_visible_text(district);
-    
-    time.sleep(2)
-    ass_cons_select_select = Select(last_selects[1]);
-    ass_cons_select_select.select_by_visible_text(ass_cons);
 
     while True:
         files = glob.glob(path+'/*')
@@ -113,8 +109,6 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
 
     browser.switch_to.window(tbs[-1])
 
-    print('here')
-
     html_src = browser.page_source
 
     soup = BeautifulSoup(html_src, 'html.parser')
@@ -144,7 +138,7 @@ def getRequestID(link, name, age, father_name, gender, state, district, ass_cons
             asc_no+=asc_tag2.text[i]
     
     asc_no = asc_no[::-1]
-    return(part_no,serial_no,epic_id,asc_no,asc,district,state)
+    return(part_no,serial_no,epic_id,asc_no,asc,district,state, browser)
 
 def getRequestEPIC(link, epic, state, district):
     
@@ -233,24 +227,24 @@ def getRequestEPIC(link, epic, state, district):
     
     asc_no = asc_no[::-1]
     print (asc_no, part_no, serial_no)
-    return(part_no,serial_no,epic_id,asc_no,asc,state,district)
+    return(part_no,serial_no,epic_id,asc_no,asc,state,district, browser)
 
-# part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
-part_no,serial_no,epic_id,asc_no,asc,state,district = getRequestEPIC("https://electoralsearch.in/", "RAZ2234219", "Tamil Nadu", "Chennai")
+# # part_no,serial_no,epic_id,asc_no,asc,district,state = getRequestID("https://electoralsearch.in/", "Kavita Agraval", 49, "Ekamal Kishor", 'F', 'Uttar Pradesh', 'Ghaziabad', 'Modi Nagar')
+# part_no,serial_no,epic_id,asc_no,asc,state,district = getRequestEPIC("https://electoralsearch.in/", "RAZ2234219", "Tamil Nadu", "Chennai")
 
-if(state=="Tamil Nadu"):
-    print(get_tamilnadupdf(district, asc, int(part_no), browser))
+# if(state=="Tamil Nadu"):
+#     print(get_tamilnadupdf(district, asc, int(part_no), browser))
 
-elif(state=="Uttar Pradesh"):
-    print(get_uttar_pradesh(district, asc, part_no, browser))
+# elif(state=="Uttar Pradesh"):
+#     print(get_uttar_pradesh(district, asc, part_no, browser))
 
-elif(state=="NCT OF Delhi"):
-    print(get_nctdelhipdf(asc, part_no, browser))
+# elif(state=="NCT OF Delhi"):
+#     print(get_nctdelhipdf(asc, part_no, browser))
 
-# Not working cause captcha tough
-# get_westbengalpdf("Coochbehar", "Cooch Behar Dakshin", 1, browser) 
+# # Not working cause captcha tough
+# # get_westbengalpdf("Coochbehar", "Cooch Behar Dakshin", 1, browser) 
 
-# Working
-# print(get_nctdelhipdf("Sadar Bazar", 1, browser))
+# # Working
+# # print(get_nctdelhipdf("Sadar Bazar", 1, browser))
 
-browser.quit()
+# browser.quit()
