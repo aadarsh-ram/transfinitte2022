@@ -4,6 +4,7 @@ from tabnanny import check
 import pytesseract
 from PIL import Image
 from pdf2image import convert_from_path
+from ai4bharat.transliteration import XlitEngine
 import numpy as np
 from tqdm.auto import tqdm
 
@@ -14,6 +15,9 @@ def show(img):
 
 def predict(path, lang = 'tam'):
     n = 0
+    e = XlitEngine(src_script_type="indic", beam_width=10, rescore=False)
+
+
     file = convert_from_path(path,fmt='jpeg')
     data = {}
     for img in tqdm(file[2:-1]): #13
@@ -451,8 +455,8 @@ def predict(path, lang = 'tam'):
 
                     if True not in [i.isdigit() for i in house_no]:
                         house_no = '-1'
-
-                    this_data = {'age':age, 'house_no':house_no, 'gender':gender, 'name':name, 'father/husband':(father_name, husband_father), 'uniqueid':runiqueid}
+                        
+                    this_data = {'age':age, 'house_no':house_no, 'gender':gender, 'name':e.translit_word(name, lang_code="ta", topk=5)[0], 'father/husband':(e.translit_word(father_name, lang_code="ta", topk=5)[0], husband_father), 'uniqueid':runiqueid}
 
                     data[runiqueid] = this_data
 
