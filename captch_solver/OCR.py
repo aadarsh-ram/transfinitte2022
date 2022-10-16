@@ -456,7 +456,20 @@ def predict(path, lang = 'tam'):
                     if True not in [i.isdigit() for i in house_no]:
                         house_no = '-1'
                         
-                    this_data = {'age':age, 'house_no':house_no, 'gender':gender, 'name':e.translit_word(name, lang_code="ta", topk=5)[0], 'father/husband':(e.translit_word(father_name, lang_code="ta", topk=5)[0], husband_father), 'uniqueid':runiqueid}
+                    if name.rstrip().lstrip() != "":
+                        try:
+                            name = e.translit_word(name, lang_code="ta").replace('\u200c','').replace('\n','')
+                        except:
+                            pass
+
+                    if father_name.rstrip().lstrip() != "":
+                        try:
+                            father_name = e.translit_word(father_name, lang_code="ta").replace('\u200c','').replace('\n','')
+                        except:
+                            pass
+
+
+                    this_data = {'age':age, 'house_no':house_no, 'gender':gender, 'name':name, 'father/husband':(father_name, husband_father), 'uniqueid':runiqueid}
 
                     data[runiqueid] = this_data
 
