@@ -33,12 +33,14 @@ sudo apt install tesseract-ocr-tam
 ```
 pip install -r requirements.txt
 ```
-6. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
+6. Change the Chrome Driver directory in this [line](https://github.com/aadarsh-ram/transfinitte2022/blob/main/captch_solver/main.py#L41) to get Selenium working.
+(Download the chromedriver corresponding to your Google Chrome version)
+7. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
 ```
 python3 api.py
 ```
-7. Visit `localhost:8000` to check if the API is working.
-8. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
+8. Visit `localhost:8000` to check if the API is working.
+9. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
 ```
 {
     "name" : "<Some name>",
@@ -51,7 +53,7 @@ python3 api.py
 ```
 These requests take some time to process (~7 min), since we download the file each time and run OCR on it.
 
-9. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
+10. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
 
 A sample response from the API will look like this:
 ```
@@ -95,6 +97,7 @@ We can take requests for Tamil Nadu and NCT of Delhi currently. Automation scrip
 - [API - api.py](./captch_solver/api.py)
 - [Captcha Solver - solver.py](./captch_solver/solver.py)
 - [OCR Program for PDF Files - OCR.py](./captch_solver/OCR.py)
+- [Main Program - main.py](./captch_solver/main.py)
 - [Tamil Nadu Automation - tamilnadu.py](./captch_solver/tamilnadu.py)
 - [NCT of Delhi Automation - nctdelhi.py](./captch_solver/nctdelhi.py)
 - [Algorithm for Family Tree - algo.py](./captch_solver/algo.py)
