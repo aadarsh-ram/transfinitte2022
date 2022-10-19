@@ -20,21 +20,25 @@ Steps to setup the API:
 ```
 cd captch_solver
 ```
-3. Execute the following command:
+3. Create a virtualenv
+```
+python -m venv venv
+```
+4. Execute the following command:
 ```
 sudo apt install tesseract-ocr
 sudo apt install tesseract-ocr-tam
 ```
-4. Install all the requirements (Note: There are a lot of dependencies, hence it might take some time)
+5. Install all the requirements (Note: There are a lot of dependencies, hence it might take some time)
 ```
 pip install -r requirements.txt
 ```
-5. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
+6. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
 ```
 python3 api.py
 ```
-6. Visit `localhost:8000` to check if the API is working.
-7. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
+7. Visit `localhost:8000` to check if the API is working.
+8. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
 ```
 {
     "name" : "<Some name>",
@@ -47,7 +51,7 @@ python3 api.py
 ```
 These requests take some time to process (~7 min), since we download the file each time and run OCR on it.
 
-8. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
+9. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
 
 A sample response from the API will look like this:
 ```
