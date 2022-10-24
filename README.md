@@ -33,7 +33,7 @@ sudo apt install tesseract-ocr-tam
 ```
 pip install -r requirements.txt
 ```
-6. Donwload the model files for CRAFT model from [here](https://drive.google.com/file/d/1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ/view) and for TPS-ResNet-BiLSTM-Attn-case-sensitive from [here](https://drive.google.com/file/d/1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY/view) and place it inside the [captcha_solver](https://github.com/aadarsh-ram/transfinitte2022/tree/main/captch_solver) folder here
+6. Donwload the model files for CRAFT model from [here](https://drive.google.com/file/d/1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ/view) and for TPS-ResNet-BiLSTM-Attn-case-sensitive from [here](https://drive.google.com/file/d/1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY/view) and place them both inside the [captcha_solver](https://github.com/aadarsh-ram/transfinitte2022/tree/main/captch_solver) folder here
 
 7. Change the Chrome Driver directory in this [line](https://github.com/aadarsh-ram/transfinitte2022/blob/main/captch_solver/main.py#L41) to get Selenium working.
 (Download the chromedriver corresponding to your Google Chrome version)
