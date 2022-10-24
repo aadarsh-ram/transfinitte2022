@@ -33,14 +33,16 @@ sudo apt install tesseract-ocr-tam
 ```
 pip install -r requirements.txt
 ```
-6. Change the Chrome Driver directory in this [line](https://github.com/aadarsh-ram/transfinitte2022/blob/main/captch_solver/main.py#L41) to get Selenium working.
+6. Donwload the model files for CRAFT model from [here](https://drive.google.com/file/d/1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ/view) and for TPS-ResNet-BiLSTM-Attn-case-sensitive from [here](https://drive.google.com/file/d/1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY/view) and place it inside the [captcha_solver](https://github.com/aadarsh-ram/transfinitte2022/tree/main/captch_solver) folder here
+
+7. Change the Chrome Driver directory in this [line](https://github.com/aadarsh-ram/transfinitte2022/blob/main/captch_solver/main.py#L41) to get Selenium working.
 (Download the chromedriver corresponding to your Google Chrome version)
-7. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
+8. Run the API using the following command (Note: Our captcha and transliteration model needs time to setup, it might take some time to get the API started)
 ```
 python3 api.py
 ```
-8. Visit `localhost:8000` to check if the API is working.
-9. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
+9. Visit `localhost:8000` to check if the API is working.
+10. To search any records, send a POST request to `localhost:8000/getpdfinfo` in the following JSON format.
 ```
 {
     "name" : "<Some name>",
@@ -53,7 +55,7 @@ python3 api.py
 ```
 These requests take some time to process (~7 min), since we download the file each time and run OCR on it.
 
-10. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
+11. We also have a UI through which you can enter the above information and a JSON will be returned in the console window of your browser. Visit [this link](./frontend/test.html) to check that out.
 
 A sample response from the API will look like this:
 ```
