@@ -54,7 +54,7 @@ class ALGO:
         gender=(self.created[node]['info']['gender'])
         if(gender=='M'):
             for i in self.deets:
-                if(self.deets[i]['father/husband'][1]=='F' and self.deets[i]['father/husband'][0]==self.deets[node]['name'] and i not in created[node]['children']):
+                if(self.deets[i]['father/husband'][1]=='F' and self.deets[i]['father/husband'][0]==self.deets[node]['name'] and i not in self.created[node]['children']):
                     self.created[node]['children'].append(i)
 
     def get_parents(self, node):
