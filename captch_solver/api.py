@@ -13,7 +13,6 @@ from tamilnadu import get_tamilnadupdf
 from uttarpradesh import get_uttar_pradesh
 from nctdelhi import get_nctdelhipdf
 from westbengal import get_westbengalpdf
-
 from OCR import predict
 
 warnings.filterwarnings("ignore")

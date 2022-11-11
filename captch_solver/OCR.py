@@ -7,6 +7,7 @@ from pdf2image import convert_from_path
 from ai4bharat.transliteration import XlitEngine
 import numpy as np
 from tqdm.auto import tqdm
+import os
 
 def show(img):
     img = Image.fromarray(img)
@@ -16,7 +17,22 @@ def predict(path, lang = 'tam'):
     n = 0
     e = XlitEngine(src_script_type="indic", beam_width=10, rescore=False)
 
+    download_complete = False
+    folder = None
+    while not download_complete:
+        folder = '/'.join(path.split('/')[:-1])
 
+        download_complete = True
+        for i in os.listdir(folder):
+            if "crdownload" in i:
+                download_complete = False
+                break
+
+    path = '.'.join(path.split('.')[:-1])
+
+        
+		
+    # print(path)
     file = convert_from_path(path,fmt='jpeg')
     data = {}
     for img in tqdm(file[2:-1]): #13
