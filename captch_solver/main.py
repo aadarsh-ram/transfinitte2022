@@ -38,7 +38,7 @@ class SEL_AGENT:
 
     def startupDB(self):
         # Comment if driver already added to PATH
-        self.webdriver_service = Service("/home/frozenwolf/chromedriver")
+        self.webdriver_service = Service("/mnt/c/Users/aadar/chromedriver/stable/chromedriver")
         self.browser = webdriver.Chrome(service=self.webdriver_service, options=self.chrome_options)
 
     def shutdownDB(self):
@@ -96,7 +96,8 @@ class SEL_AGENT:
             captchaText.send_keys(prediction)
 
             submitbt = self.browser.find_elements(By.XPATH,'//*[@id="btnDetailsSubmit"]')[1]
-            submitbt.click()
+            self.browser.execute_script("arguments[0].click();", submitbt)
+            # submitbt.click()
 
             try:
                 time.sleep(1)
@@ -108,7 +109,9 @@ class SEL_AGENT:
         time.sleep(3)
 
         viewdetails_but = self.browser.find_element(By.XPATH,'//*[@id="resultsTable"]/tbody/tr/td[1]/form/input[25]')
-        viewdetails_but.click()
+        self.browser.execute_script("arguments[0].click();", viewdetails_but)
+
+        # viewdetails_but.click()
 
         time.sleep(15)
 

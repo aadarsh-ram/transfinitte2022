@@ -1,6 +1,6 @@
 ,image_name,word_bboxes,pred_words,align_text
-0,filename.png,"{'0.95208126': array([[ 26.781311,   6.443319],
-       [180.28008 ,   8.059108],
-       [179.82832 ,  50.973644],
-       [ 26.329567,  49.357853]], dtype=float32)}",Unknown,Unknown
+0,filename.png,"{'1.0022646': array([[ 6.941175 , 20.431372 ],
+       [91.67059  , 26.94902  ],
+       [89.78824  , 51.419605 ],
+       [ 5.0588202, 44.90196  ]], dtype=float32)}",Unknown,Unknown
 1,filename.png,Unknown,Unknown,Unknown
