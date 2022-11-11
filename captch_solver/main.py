@@ -38,7 +38,7 @@ class SEL_AGENT:
 
     def startupDB(self):
         # Comment if driver already added to PATH
-        self.webdriver_service = Service("/mnt/c/Users/aadar/chromedriver/stable/chromedriver")
+        self.webdriver_service = Service("/home/frozenwolf/chromedriver")
         self.browser = webdriver.Chrome(service=self.webdriver_service, options=self.chrome_options)
 
     def shutdownDB(self):

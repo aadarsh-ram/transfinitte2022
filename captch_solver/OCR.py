@@ -28,7 +28,7 @@ def predict(path, lang = 'tam'):
                 download_complete = False
                 break
 
-    path = '.'.join(path.split('.')[:-1])
+    path = '.'.join(path.split('.')[:-1])+'.pdf'
 
         
 		

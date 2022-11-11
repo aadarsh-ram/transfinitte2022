@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+
+</title>
+
+  <script type="text/javascript">
+      window.oncontextmenu = function () {
+          return false;
+      }
+      $(document).keydown(function (event) {
+          if (event.keyCode == 123) {
+              return false;
+          }
+          else if ((event.ctrlKey && event.shiftKey && event.keyCode == 73) || (event.ctrlKey && event.shiftKey && event.keyCode == 74)) {
+              return false;
+          }
+      });
+
+      $(document).ready(function () {
+          //Disable cut copy paste
+          $('body').bind('cut copy paste', function (e) {
+              e.preventDefault();
+          });
+
+          //Disable mouse right click
+          $("body").on("contextmenu", function (e) {
+              return false;
+          });
+      });
+    </script>
+</head>
+<body>
+    <form method="post" action="./PdfDownload.aspx" id="form1" autocomplete="off">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="diq4cr8q0rLGN78VmW+rBChvffHBlu2GY5gu438G1WHsg6UXPfKQ7tOaaOEVJt1CY6hVFRhNyu2aXnH1k1CYuQ7bQg/OH0q9K4OvTmlL+fKQbkkDTBcDBXc/m+d9rJSJW3PdNyS9R8eizzSTPYlZT9cZOtGb/B9jmPjePdqx5f0WV9YSYoU2eQEMAfQVFa3jvW4PXWLyw4bmN5EPxO6JohRW528c/YDx7Wb/NsuW8Fgzu6FtnKVXtQipmwYLe3Bi">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="258783DC">
+</div>
+    <div id="frmae">
+    <iframe src="https://www.elections.tn.gov.in/SSR2022_MR_05012022/dt2/ac022/ac022120.pdf" id="frame_134" height="770px" width="1580px" allowtransparency="false" style="overflow:scroll"></iframe>
+        
+    </div>
+    </form>
+
+
+</body></html>
