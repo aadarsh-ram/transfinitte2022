@@ -1,6 +1,6 @@
 # Transfinitte 2022
 
-Problem Statement: [BharatX] Build a Family Tree
+Problem Statement: [BharatX] [Build a Family Tree](https://quartz-artichoke-67d.notion.site/Hackathon-Problem-Statement-7f6ebf8bbc694cd18c355eb9433d1197)
 
 Team Name: Project ONN
 
@@ -37,7 +37,7 @@ sudo apt install tesseract-ocr-tam
 ```
 pip install -r requirements.txt
 ```
-7. Download the model files for CRAFT model from [here](https://drive.google.com/file/d/1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ/view) and for TPS-ResNet-BiLSTM-Attn-case-sensitive from [here](https://drive.google.com/file/d/1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY/view) and place them both inside the [captcha_solver](https://github.com/aadarsh-ram/transfinitte2022/tree/main/captch_solver) folder.
+7. Download the model files for CRAFT model from [here](https://drive.google.com/file/d/1Jk4eGD7crsqCCg9C9VjCLkMN3ze8kutZ/view) and for TPS-ResNet-BiLSTM-Attn-case-sensitive from [here](https://drive.google.com/file/d/1ajONZOgiG9pEYsQ-eBmgkVbMDuHgPCaY/view) and place them both inside the [captch_solver](https://github.com/aadarsh-ram/transfinitte2022/tree/main/captch_solver) folder.
 
 8. Change the Chrome Driver filepath in this [line](https://github.com/aadarsh-ram/transfinitte2022/blob/main/captch_solver/main.py#L41) to the path where your Chrome Driver has been installed.
 (Download the Chrome Driver corresponding to your Google Chrome version [here](https://chromedriver.chromium.org/downloads))
